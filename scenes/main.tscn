@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dkahm8blap41k"]
+
+[ext_resource type="PackedScene" uid="uid://dsi3ygbjbhd3y" path="res://assests/gltf/tiles/coast/hex_coast_A.gltf" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dm7nek6vuxlxh" path="res://assests/gltf/tiles/coast/hex_coast_B.gltf" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://fd0hlfcyn0f8" path="res://assests/gltf/tiles/coast/hex_coast_C.gltf" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bnxl5668ygju3" path="res://assests/gltf/tiles/coast/hex_coast_D.gltf" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://j3rsfwqsm8ja" path="res://assests/gltf/tiles/coast/hex_coast_E.gltf" id="6_tefeu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
+sky_top_color = Color(0.9688167, 0.88434607, 0.772057, 1)
+sky_horizon_color = Color(0.96964985, 0.758176, 0.46244168, 1)
+ground_bottom_color = Color(0.7722668, 0.7121874, 0.6444708, 1)
+ground_horizon_color = Color(0.96964985, 0.758176, 0.46244168, 1)
+
+[sub_resource type="Sky" id="Sky_jyhfs"]
+sky_material = SubResource("ProceduralSkyMaterial_sugp2")
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 2
+sky = SubResource("Sky_jyhfs")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sugp2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_texture = ExtResource("1_sugp2")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
+material = SubResource("StandardMaterial3D_sugp2")
+size = Vector2(100, 100)
+
+[node name="Node3D" type="Node3D" unique_id=736719874]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1754895676]
+environment = SubResource("Environment_o5qli")
+camera_attributes = SubResource("CameraAttributesPractical_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=902486525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=201408475]
+mesh = SubResource("PlaneMesh_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1969168539]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0.5163994, 5.353566, 12.283885)
+keep_aspect = 0
+fov = 90.0
+
+[node name="hex_coast_A2" parent="." unique_id=1334562548 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6249808, 1, 0.58701706)
+
+[node name="hex_coast_B2" parent="." unique_id=1645153667 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.624, 1, 0.567)
+
+[node name="hex_coast_C2" parent="." unique_id=478739340 instance=ExtResource("4_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.556052, 1, 0.5713384)
+
+[node name="hex_coast_D2" parent="." unique_id=1700659028 instance=ExtResource("5_tefeu")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.5156217, 1, -1.1542811)
+
+[node name="hex_coast_E2" parent="." unique_id=526466881 instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.619, 1, -2.803)
