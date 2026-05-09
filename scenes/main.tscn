@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkahm8blap41k"]
 
 [ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c15xo1u2d6b8j" path="res://scenes/unit.tscn" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -16,6 +17,10 @@ background_mode = 2
 sky = SubResource("Sky_jyhfs")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sugp2"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 6.0
+dof_blur_far_transition = 6.0
+dof_blur_near_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_texture = ExtResource("1_sugp2")
@@ -32,13 +37,10 @@ environment = SubResource("Environment_o5qli")
 camera_attributes = SubResource("CameraAttributesPractical_sugp2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=902486525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10)
+transform = Transform3D(0.8660255, 0.25000003, -0.43301275, 0, 0.8660255, 0.50000006, 0.50000006, -0.43301275, 0.7500001, 0, 1.4217947, 2.4618404)
 shadow_enabled = true
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=201408475]
 mesh = SubResource("PlaneMesh_0wfyh")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1969168539]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 1, 3.732)
-keep_aspect = 0
-fov = 90.0
+[node name="Unit" parent="." unique_id=2110597485 instance=ExtResource("2_0wfyh")]
