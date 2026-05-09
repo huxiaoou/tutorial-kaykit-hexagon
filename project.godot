@@ -14,6 +14,10 @@ config/name="tutorial-kaykit-hexagon"
 run/main_scene="uid://dkahm8blap41k"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+ManagerHextileCoords="*uid://hg61gky8pr8l"
+
 [display]
 
 window/size/viewport_width=1920
