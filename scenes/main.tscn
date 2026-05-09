@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dkahm8blap41k"]
 
+[ext_resource type="Script" uid="uid://dd7qwifvsyj0t" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c15xo1u2d6b8j" path="res://scenes/unit.tscn" id="2_0wfyh"]
 
@@ -30,7 +31,8 @@ uv1_scale = Vector3(100, 100, 100)
 material = SubResource("StandardMaterial3D_sugp2")
 size = Vector2(100, 100)
 
-[node name="Node3D" type="Node3D" unique_id=736719874]
+[node name="Main" type="Node3D" unique_id=736719874]
+script = ExtResource("1_jyhfs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1754895676]
 environment = SubResource("Environment_o5qli")

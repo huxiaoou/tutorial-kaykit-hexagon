@@ -49,7 +49,7 @@ func process_gltf(path: String, lib: MeshLibrary, id: int, original_name: String
     var mesh_node: MeshInstance3D = find_mesh_node(scene)
     if mesh_node and mesh_node.mesh:
         lib.create_item(id)
-        lib.set_item_name(id, original_name.get_basename())
+        lib.set_item_name(id, original_name.get_basename().get_file())
         lib.set_item_mesh(id, mesh_node.mesh)
     scene.free()
     return

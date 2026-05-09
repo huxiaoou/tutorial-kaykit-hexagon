@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d4bsiqvavavp2" path="res://assests/sprites/aekalib_flying_hare.png" id="1_o7ajc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k673f"]
-radius = 0.49267578
-height = 0.98535156
+radius = 0.34521484
+height = 0.901
 
 [node name="Unit" type="CharacterBody3D" unique_id=2110597485]
 script = ExtResource("1_k673f")
@@ -25,5 +25,5 @@ hframes = 24
 vframes = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1658333117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13499905, 0.45875812, -0.040795773)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18237926, 0.45875812, -0.040795773)
 shape = SubResource("CapsuleShape3D_k673f")
