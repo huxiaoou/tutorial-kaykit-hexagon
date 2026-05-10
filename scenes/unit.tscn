@@ -3,21 +3,19 @@
 [ext_resource type="Script" uid="uid://c7c3wxd0fk5o1" path="res://scenes/unit.gd" id="1_k673f"]
 [ext_resource type="Texture2D" uid="uid://d4bsiqvavavp2" path="res://assests/sprites/aekalib_flying_hare.png" id="1_o7ajc"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k673f"]
-radius = 0.34521484
-height = 0.901
+[sub_resource type="BoxShape3D" id="BoxShape3D_k673f"]
+size = Vector3(1.449, 1.689, 0.1)
 
 [node name="Unit" type="CharacterBody3D" unique_id=2110597485]
 script = ExtResource("1_k673f")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1354303941]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1.6, 2.772)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 5, 8.66)
 keep_aspect = 0
 fov = 90.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1054801515]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39781427, 0)
-pixel_size = 0.004
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shaded = true
 alpha_cut = 2
 texture = ExtResource("1_o7ajc")
@@ -25,5 +23,5 @@ hframes = 24
 vframes = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1658333117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18237926, 0.45875812, -0.040795773)
-shape = SubResource("CapsuleShape3D_k673f")
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.275, 0.87, 0)
+shape = SubResource("BoxShape3D_k673f")

@@ -1,9 +1,9 @@
 extends Node
 
-var size: float = 0.5
-var w: float = sqrt(3) * size # + 0.01
-var h: float = 1.5 * size # - 0.01
-var offset: float = 0.50 * w
+var radius: float = 2 / sqrt(3)
+var w: float = sqrt(3) * radius # + 0.01
+var h: float = 1.5 * radius # - 0.01
+var offset: float = 0.50 * sqrt(3) * radius
 
 
 func point_to_hex_coordinates(point: Vector3) -> Vector2i:

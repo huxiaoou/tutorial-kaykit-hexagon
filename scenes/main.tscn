@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dd7qwifvsyj0t" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c15xo1u2d6b8j" path="res://scenes/unit.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bkdjno4kmrtkh" path="res://scenes/cursor.tscn" id="3_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -19,8 +20,7 @@ sky = SubResource("Sky_jyhfs")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sugp2"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 6.0
-dof_blur_far_transition = 6.0
+dof_blur_far_transition = 10.0
 dof_blur_near_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
@@ -44,5 +44,8 @@ shadow_enabled = true
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=201408475]
 mesh = SubResource("PlaneMesh_0wfyh")
+
+[node name="Cursor" parent="." unique_id=92837733 instance=ExtResource("3_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.001, 0)
 
 [node name="Unit" parent="." unique_id=2110597485 instance=ExtResource("2_0wfyh")]
