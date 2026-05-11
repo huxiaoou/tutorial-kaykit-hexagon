@@ -4,7 +4,7 @@ class_name HexTile
 
 @export var data: DataHexTile = null
 
-var toggle_preview: bool = false
+var preview_activated: bool = false
 var static_body: StaticBody3D = null
 
 
@@ -39,15 +39,11 @@ func _ready() -> void:
     return
 
 
-func update_last_instance_transform(pos: Vector3) -> void:
-    var mesh_idx: int = multimesh.visible_instance_count - 1
-    var xform: Transform3D = Transform3D(Basis(), pos)
-    multimesh.set_instance_transform(mesh_idx, xform)
-    return
+func activate_preview() -> void:
+    if preview_activated:
+        return
 
-
-func start_preview() -> void:
-    toggle_preview = true
+    preview_activated = true
     multimesh.visible_instance_count += 1
     multimesh.set_instance_color(
         multimesh.visible_instance_count - 1,
@@ -56,18 +52,30 @@ func start_preview() -> void:
     return
 
 
-func update_preview(pos: Vector3) -> void:
-    update_last_instance_transform(pos)
+func update_last_instance_pos(pos: Vector3) -> void:
+    var mesh_idx: int = multimesh.visible_instance_count - 1
+    var xform: Transform3D = Transform3D(Basis(), pos)
+    multimesh.set_instance_transform(mesh_idx, xform)
     return
 
 
-func stop_preview() -> void:
+func update_preview(pos: Vector3) -> void:
+    if not preview_activated:
+        return
+    update_last_instance_pos(pos)
+    return
+
+
+func deactivate_preview() -> void:
+    if not preview_activated:
+        return
+
     multimesh.set_instance_color(
         multimesh.visible_instance_count - 1,
         Color(1.0, 1.0, 1.0, 1.0),
     )
     multimesh.visible_instance_count -= 1
-    toggle_preview = false
+    preview_activated = false
     return
 
 
@@ -94,12 +102,16 @@ func add_instance_at(pos: Vector3) -> DataHexTileRecord:
         multimesh.visible_instance_count - 1,
         Color(1.0, 1.0, 1.0, 1.0),
     )
-    update_preview(pos)
+    update_last_instance_pos(pos)
     add_collision_at(pos)
     return get_new_added_data_record()
 
 
 func remove_instance_from_index(mesh_idx: int) -> DataHexTileRecord:
+    if preview_activated:
+        print("Cannot remove instance while preview is active!")
+        return null
+
     var last_idx: int = multimesh.visible_instance_count - 1
     var last_xform: Transform3D = multimesh.get_instance_transform(last_idx)
     multimesh.set_instance_transform(mesh_idx, last_xform)
