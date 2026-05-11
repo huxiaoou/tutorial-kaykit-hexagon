@@ -4,12 +4,15 @@ class_name Cursor
 
 signal curr_hex_tile_changed(new_coords: Vector2i)
 
-var curr_point: Vector3 = Vector3.ZERO
+var curr_point: Vector3 = Vector3.ZERO:
+    get:
+        return ManagerHextileCoords.hex_coordinates_to_point(curr_hex_tile_coords)
 var curr_hex_tile_coords: Vector2i = Vector2i.ZERO
 
 
 func _ready() -> void:
     curr_hex_tile_changed.connect(update_pos_from_hex_coords)
+    position.y = 0.001
     return
 
 

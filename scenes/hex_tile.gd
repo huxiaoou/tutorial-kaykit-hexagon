@@ -47,7 +47,7 @@ func activate_preview() -> void:
     multimesh.visible_instance_count += 1
     multimesh.set_instance_color(
         multimesh.visible_instance_count - 1,
-        Color(1.0, 1.0, 1.0, 0.2),
+        Color(1.0, 1.0, 1.0, 0.5),
     )
     return
 

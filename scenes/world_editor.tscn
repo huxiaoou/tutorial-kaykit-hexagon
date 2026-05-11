@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://co07wmb1fwaa4"]
+
+[ext_resource type="Script" uid="uid://dy4q2t6ci83yn" path="res://scenes/world_editor.gd" id="1_3e7qg"]
+[ext_resource type="MeshLibrary" uid="uid://ddwp33qflqhwi" path="res://resources/meshlibs/tiles.meshlib" id="2_o5ymu"]
+[ext_resource type="PackedScene" uid="uid://bkdjno4kmrtkh" path="res://scenes/cursor.tscn" id="3_tegj0"]
+
+[node name="WorldEditor" type="Node" unique_id=9614581]
+script = ExtResource("1_3e7qg")
+meshlib = ExtResource("2_o5ymu")
+
+[node name="Cursor" parent="." unique_id=92837733 instance=ExtResource("3_tegj0")]
+
+[node name="Tiles" type="Node" parent="." unique_id=1526551749]

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Unit
 
-@export var speed: float = 100
+@export var speed: float = 300
 
 
 func _physics_process(delta: float) -> void:
