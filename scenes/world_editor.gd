@@ -2,6 +2,8 @@ extends Node
 
 class_name WorldEditor
 
+const SAVE_PATH = "user://world.tres"
+
 @export var meshlib: MeshLibrary
 
 @onready var cursor: Cursor = $Cursor
@@ -9,10 +11,16 @@ class_name WorldEditor
 
 var manager_hextile: Dictionary[String, HexTile] = { }
 var selected_hextile: HexTile = null
-var manager_records: Dictionary[Vector2i, DataHexTileRecord] = { }
+var data_world: DataWorld = null
 
 
 func _ready() -> void:
+    setup_manager_hextile()
+    data_world = DataWorld.new()
+    return
+
+
+func setup_manager_hextile() -> void:
     if meshlib == null:
         return
 
@@ -34,13 +42,6 @@ func match_hextile(data_record: DataHexTileRecord) -> HexTile:
         if hextile.data.mesh_name == data_record.mesh_name:
             return hextile
     return null
-
-
-func match_coords(data_record: DataHexTileRecord) -> Vector2i:
-    for coords in manager_records.keys():
-        if manager_records[coords].is_equal(data_record):
-            return coords
-    return Vector2.INF
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -69,30 +70,32 @@ func _unhandled_input(event: InputEvent) -> void:
             _deselect_hextile()
         else:
             print("No hextile selected to deselect!")
+    elif event.is_action_pressed("save_world"):
+        save_world()
     return
 
 
 func _place_hextile() -> void:
     var hextile_coords: Vector2i = cursor.curr_hex_tile_coords
-    if manager_records.get(hextile_coords, null):
+    if data_world.manager_records.get(hextile_coords, null):
         print("Hex tile already exists at ", hextile_coords)
         return
 
     var hextile_point: Vector3 = cursor.curr_point
-    manager_records[hextile_coords] = selected_hextile.add_instance_at(hextile_point + Vector3(0, 1, 0))
+    data_world.manager_records[hextile_coords] = selected_hextile.add_instance_at(hextile_point + Vector3(0, 1, 0))
     print("Clicked at %s, place %s hextile at %s" % [hextile_point, selected_hextile.data.mesh_name, hextile_coords])
     return
 
 
 func _delete_hextile() -> void:
-    var data_record: DataHexTileRecord = manager_records.get(cursor.curr_hex_tile_coords, null)
+    var data_record: DataHexTileRecord = data_world.manager_records.get(cursor.curr_hex_tile_coords, null)
     if data_record:
         selected_hextile = match_hextile(data_record)
         if selected_hextile:
             var last_data_record: DataHexTileRecord = selected_hextile.remove_instance_from_index(data_record.id)
-            var last_hextile_coords: Vector2i = match_coords(last_data_record)
-            manager_records[last_hextile_coords] = data_record
-            manager_records.erase(cursor.curr_hex_tile_coords)
+            var last_hextile_coords: Vector2i = data_world.match_coords(last_data_record)
+            data_world.manager_records[last_hextile_coords] = data_record
+            data_world.manager_records.erase(cursor.curr_hex_tile_coords)
             selected_hextile = null
         print("Delete hex tile at ", cursor.curr_hex_tile_coords)
     else:
@@ -121,4 +124,13 @@ func _deselect_hextile() -> void:
 func _process(_delta: float) -> void:
     if selected_hextile != null:
         selected_hextile.update_preview(cursor.curr_point + Vector3(0, 1, 0))
+    return
+
+
+func save_world() -> void:
+    var error: int = ResourceSaver.save(data_world, SAVE_PATH)
+    if error != OK:
+        print("Error saving map: %s" % error)
+        return
+    print("Map saved successfully.")
     return
