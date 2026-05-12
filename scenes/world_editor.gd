@@ -12,11 +12,12 @@ const SAVE_PATH = "user://world.tres"
 var manager_hextile: Dictionary[String, HexTile] = { }
 var selected_hextile: HexTile = null
 var data_world: DataWorld = null
+var xz_plane_y: float = 0.0
 
 
 func _ready() -> void:
     setup_manager_hextile()
-    data_world = DataWorld.new()
+    setup_world(load_map())
     return
 
 
@@ -133,4 +134,34 @@ func save_world() -> void:
         print("Error saving map: %s" % error)
         return
     print("Map saved successfully.")
+    return
+
+
+func load_map() -> DataWorld:
+    if not ResourceLoader.exists(SAVE_PATH):
+        print("Error loading map: No resource found at %s" % SAVE_PATH)
+        return
+    var loaded_resource: Resource = ResourceLoader.load(SAVE_PATH, "DataWorld")
+    if loaded_resource == null:
+        print("Error loading map: Resource not found at %s" % SAVE_PATH)
+        return
+    if loaded_resource is not DataWorld:
+        print("Error loading map: Resource at %s is not of type DataWorld" % SAVE_PATH)
+        return
+
+    return loaded_resource as DataWorld
+
+
+func setup_world(load_data_world: DataWorld) -> void:
+    data_world = DataWorld.new()
+    for cell: Vector2i in load_data_world.manager_records.keys():
+        var data_record: DataHexTileRecord = load_data_world.manager_records[cell]
+        var hextile: HexTile = manager_hextile[data_record.mesh_name]
+        var pos: Vector3 = ManagerHextileCoords.hex_coordinates_to_point(cell, xz_plane_y)
+        var upd_data_record: DataHexTileRecord = hextile.add_instance_at(pos + Vector3(0, 1, 0))
+        data_world.manager_records[cell] = upd_data_record
+    print("Map loaded successfully.")
+    if selected_hextile:
+        selected_hextile.stop_preview()
+        selected_hextile = null
     return
