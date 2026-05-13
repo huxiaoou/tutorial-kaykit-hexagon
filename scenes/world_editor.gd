@@ -148,7 +148,7 @@ func load_map() -> DataWorld:
     if loaded_resource is not DataWorld:
         print("Error loading map: Resource at %s is not of type DataWorld" % SAVE_PATH)
         return
-
+    print("Map loaded successfully.")
     return loaded_resource as DataWorld
 
 
@@ -160,8 +160,8 @@ func setup_world(load_data_world: DataWorld) -> void:
         var pos: Vector3 = ManagerHextileCoords.hex_coordinates_to_point(cell, xz_plane_y)
         var upd_data_record: DataHexTileRecord = hextile.add_instance_at(pos + Vector3(0, 1, 0))
         data_world.manager_records[cell] = upd_data_record
-    print("Map loaded successfully.")
     if selected_hextile:
         selected_hextile.stop_preview()
         selected_hextile = null
+    print("World setup completed")
     return
