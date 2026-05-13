@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://co07wmb1fwaa4"]
 
-[ext_resource type="Script" uid="uid://dy4q2t6ci83yn" path="res://scenes/world_editor.gd" id="1_3e7qg"]
-[ext_resource type="MeshLibrary" uid="uid://ddwp33qflqhwi" path="res://resources/meshlibs/tiles.meshlib" id="2_o5ymu"]
+[ext_resource type="PackedScene" uid="uid://ba8a6hgsjuvp8" path="res://scenes/world_loader.tscn" id="1_3e7qg"]
+[ext_resource type="Script" uid="uid://dy4q2t6ci83yn" path="res://scenes/world_editor.gd" id="2_o5ymu"]
 [ext_resource type="PackedScene" uid="uid://bkdjno4kmrtkh" path="res://scenes/cursor.tscn" id="3_tegj0"]
+[ext_resource type="Script" uid="uid://buyowohircik4" path="res://scenes/camera_3d.gd" id="4_p1n5p"]
 
-[node name="WorldEditor" type="Node" unique_id=9614581]
-script = ExtResource("1_3e7qg")
-meshlib = ExtResource("2_o5ymu")
+[node name="WorldEditor" unique_id=554057838 instance=ExtResource("1_3e7qg")]
+script = ExtResource("2_o5ymu")
 
-[node name="Cursor" parent="." unique_id=92837733 instance=ExtResource("3_tegj0")]
+[node name="Cursor" parent="." index="4" unique_id=92837733 instance=ExtResource("3_tegj0")]
 
-[node name="Tiles" type="Node" parent="." unique_id=1526551749]
+[node name="Camera3D" type="Camera3D" parent="." index="5" unique_id=713457845]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 5, 8.66)
+fov = 90.0
+script = ExtResource("4_p1n5p")

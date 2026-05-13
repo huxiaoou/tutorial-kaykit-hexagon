@@ -1,50 +1,12 @@
 [gd_scene format=3 uid="uid://dkahm8blap41k"]
 
 [ext_resource type="Script" uid="uid://dd7qwifvsyj0t" path="res://scenes/main.gd" id="1_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c15xo1u2d6b8j" path="res://scenes/unit.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://co07wmb1fwaa4" path="res://scenes/world_editor.tscn" id="4_tbgi4"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-ground_bottom_color = Color(1, 1, 1, 1)
-ground_horizon_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Sky" id="Sky_jyhfs"]
-sky_material = SubResource("ProceduralSkyMaterial_sugp2")
-
-[sub_resource type="Environment" id="Environment_o5qli"]
-background_mode = 2
-sky = SubResource("Sky_jyhfs")
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sugp2"]
-dof_blur_far_enabled = true
-dof_blur_far_transition = 10.0
-dof_blur_near_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_texture = ExtResource("1_sugp2")
-uv1_scale = Vector3(100, 100, 100)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
-material = SubResource("StandardMaterial3D_sugp2")
-size = Vector2(100, 100)
+[ext_resource type="PackedScene" uid="uid://ba8a6hgsjuvp8" path="res://scenes/world_loader.tscn" id="2_jyhfs"]
 
 [node name="Main" type="Node3D" unique_id=736719874]
 script = ExtResource("1_jyhfs")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1754895676]
-environment = SubResource("Environment_o5qli")
-camera_attributes = SubResource("CameraAttributesPractical_sugp2")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=902486525]
-transform = Transform3D(0.8660255, 0.25000003, -0.43301275, 0, 0.8660255, 0.50000006, 0.50000006, -0.43301275, 0.7500001, 0, 1.4217947, 2.4618404)
-shadow_enabled = true
-
-[node name="Ground" type="MeshInstance3D" parent="." unique_id=201408475]
-mesh = SubResource("PlaneMesh_0wfyh")
-
-[node name="WorldEditor" parent="." unique_id=9614581 instance=ExtResource("4_tbgi4")]
+[node name="WorldLoader" parent="." unique_id=554057838 instance=ExtResource("2_jyhfs")]
 
 [node name="Unit" parent="." unique_id=2110597485 instance=ExtResource("2_0wfyh")]

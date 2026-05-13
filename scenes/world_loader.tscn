@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ba8a6hgsjuvp8"]
+
+[ext_resource type="Script" uid="uid://hpb5cdkq1j5x" path="res://scenes/world_loader.gd" id="1_ypd6j"]
+[ext_resource type="MeshLibrary" uid="uid://ddwp33qflqhwi" path="res://resources/meshlibs/tiles.meshlib" id="2_xvk0i"]
+[ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="3_so8qx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80q7s"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_jyhfs"]
+sky_material = SubResource("ProceduralSkyMaterial_80q7s")
+
+[sub_resource type="Environment" id="Environment_yqty0"]
+background_mode = 2
+sky = SubResource("Sky_jyhfs")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_djgnj"]
+dof_blur_far_enabled = true
+dof_blur_far_transition = 10.0
+dof_blur_near_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_texture = ExtResource("3_so8qx")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h54gk"]
+material = SubResource("StandardMaterial3D_sugp2")
+size = Vector2(100, 100)
+
+[node name="WorldLoader" type="Node" unique_id=554057838]
+script = ExtResource("1_ypd6j")
+meshlib = ExtResource("2_xvk0i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1018125895]
+environment = SubResource("Environment_yqty0")
+camera_attributes = SubResource("CameraAttributesPractical_djgnj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1040935737]
+transform = Transform3D(0.8660255, 0.25000003, -0.43301275, 0, 0.8660255, 0.50000006, 0.50000006, -0.43301275, 0.7500001, 0, 1.4217947, 2.4618404)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1862203479]
+mesh = SubResource("PlaneMesh_h54gk")
+
+[node name="Tiles" type="Node" parent="." unique_id=1888972318]
