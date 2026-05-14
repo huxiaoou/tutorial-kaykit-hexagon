@@ -4,6 +4,44 @@
 [ext_resource type="MeshLibrary" uid="uid://ddwp33qflqhwi" path="res://resources/meshlibs/tiles.meshlib" id="2_xvk0i"]
 [ext_resource type="Texture2D" uid="uid://dos6bxf7tky0d" path="res://assests/tiles/Tile_07-512x512.png" id="3_so8qx"]
 
+[sub_resource type="Animation" id="Animation_so8qx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_80q7s"]
+resource_name = "main_loop"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10, 19.933332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-6.2831855, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqty0"]
+_data = {
+&"RESET": SubResource("Animation_so8qx"),
+&"main_loop": SubResource("Animation_80q7s")
+}
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80q7s"]
 sky_top_color = Color(1, 1, 1, 1)
 sky_horizon_color = Color(1, 1, 1, 1)
@@ -34,15 +72,21 @@ size = Vector2(100, 100)
 script = ExtResource("1_ypd6j")
 meshlib = ExtResource("2_xvk0i")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=852922216]
+libraries/ = SubResource("AnimationLibrary_yqty0")
+autoplay = &"main_loop"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1018125895]
 environment = SubResource("Environment_yqty0")
 camera_attributes = SubResource("CameraAttributesPractical_djgnj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1040935737]
-transform = Transform3D(0.8660255, 0.25000003, -0.43301275, 0, 0.8660255, 0.50000006, 0.50000006, -0.43301275, 0.7500001, 0, 1.4217947, 2.4618404)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1862203479]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 mesh = SubResource("PlaneMesh_h54gk")
+metadata/_edit_lock_ = true
 
 [node name="Tiles" type="Node" parent="." unique_id=1888972318]

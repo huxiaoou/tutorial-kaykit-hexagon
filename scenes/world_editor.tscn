@@ -12,5 +12,6 @@ script = ExtResource("2_o5ymu")
 
 [node name="Camera3D" type="Camera3D" parent="." index="5" unique_id=713457845]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 5, 8.66)
+keep_aspect = 0
 fov = 90.0
 script = ExtResource("4_p1n5p")

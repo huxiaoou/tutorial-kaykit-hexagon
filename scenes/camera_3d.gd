@@ -1,6 +1,6 @@
 extends Camera3D
 
-var speed: float = 5
+var speed: float = 10
 
 
 func _physics_process(delta: float) -> void:
