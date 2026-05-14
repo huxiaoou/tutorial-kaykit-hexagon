@@ -3,7 +3,31 @@ extends WorldLoader
 class_name WorldEditor
 
 @onready var cursor: Cursor = $Cursor
+@onready var box_button_tools: HBoxContainer = $UI/BoxButtonTools
+
 var selected_hextile: HexTile = null
+
+
+func _ready() -> void:
+    super()
+    _init_ui()
+    return
+
+
+func _init_ui() -> void:
+    var scene_button_tool: PackedScene = preload("res://scenes/ui/button_tool.tscn")
+    var count: int = 0
+    for hextile in manager_hextile.values():
+        if not hextile.data.mesh_name.begins_with("hex_"):
+            continue
+
+        var button_tool: ButtonTool = scene_button_tool.instantiate()
+        box_button_tools.add_child(button_tool)
+        button_tool.setup(hextile)
+        count += 1
+        if count >= 10:
+            break
+    return
 
 
 func match_hextile(data_record: DataHexTileRecord) -> HexTile:
