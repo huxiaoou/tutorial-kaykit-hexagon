@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 ManagerHextileCoords="*uid://hg61gky8pr8l"
+Utils="*uid://wr6t3haw1u7m"
 
 [display]
 

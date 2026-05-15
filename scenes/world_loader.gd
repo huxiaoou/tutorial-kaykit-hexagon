@@ -13,24 +13,14 @@ var xz_plane_y: float = 0.0
 
 
 func _ready() -> void:
-    setup_manager_hextile()
+    manager_hextile = Utils.setup_manager_hextile(meshlib)
+    setup_tiles_node()
     setup_world(load_world())
     return
 
 
-func setup_manager_hextile() -> void:
-    if meshlib == null:
-        return
-
-    var ids: PackedInt32Array = meshlib.get_item_list()
-    for id: int in ids:
-        var item_name: String = meshlib.get_item_name(id)
-        var data: DataHexTile = DataHexTile.new()
-        data.setup(meshlib, item_name)
-
-        var hextile: HexTile = HexTile.new()
-        hextile.data = data
-        manager_hextile[item_name] = hextile
+func setup_tiles_node() -> void:
+    for hextile: HexTile in manager_hextile.values():
         tiles.add_child(hextile)
     return
 
