@@ -10,3 +10,4 @@ script = ExtResource("1_jyhfs")
 [node name="WorldLoader" parent="." unique_id=554057838 instance=ExtResource("2_jyhfs")]
 
 [node name="Unit" parent="." unique_id=2110597485 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.151978, 0)

@@ -20,3 +20,13 @@ grow_horizontal = 2
 grow_vertical = 0
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="LabelShortcut" type="Label" parent="." unique_id=1356416842]
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 28
+text = "1"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

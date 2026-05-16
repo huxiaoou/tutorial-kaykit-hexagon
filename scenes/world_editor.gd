@@ -11,6 +11,9 @@ var selected_hextile: HexTile = null
 func _ready() -> void:
     super()
     box_button_tools.setup(manager_hextile)
+    for button_tool in box_button_tools.get_button_tools():
+        button_tool.hextile_activated.connect(on_hextile_activated)
+        button_tool.hextile_deactivated.connect(on_hextile_deactivated)
     return
 
 
@@ -19,6 +22,24 @@ func match_hextile(data_record: DataHexTileRecord) -> HexTile:
         if hextile.data.mesh_name == data_record.mesh_name:
             return hextile
     return null
+
+
+func on_hextile_activated(hextile: HexTile) -> void:
+    if selected_hextile and selected_hextile != hextile:
+        selected_hextile.deactivate_preview()
+        box_button_tools.deactivate_hextile_button(selected_hextile)
+    selected_hextile = hextile
+    selected_hextile.activate_preview()
+    return
+
+
+func on_hextile_deactivated(hextile: HexTile) -> void:
+    if selected_hextile == hextile:
+        selected_hextile.deactivate_preview()
+        selected_hextile = null
+    else:
+        print("Deactivated hextile is not the currently selected one: ", hextile.data.mesh_name)
+    return
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -34,7 +55,6 @@ func _unhandled_input(event: InputEvent) -> void:
             print("Cannot delete hex tile while a hextile is selected! Deselect first.")
             return
         _delete_hextile()
-
     elif event.is_action_pressed("debug_increase"):
         if selected_hextile == null:
             _select_random_hexltile()
