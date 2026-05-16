@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cxsq1sde7iexf"]
+
+[ext_resource type="Script" uid="uid://difjiasoawuj2" path="res://scenes/ui/box_button_tools.gd" id="1_a1f78"]
+
+[node name="BoxButtonTools" type="HBoxContainer" unique_id=1914701975]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+alignment = 1
+script = ExtResource("1_a1f78")
