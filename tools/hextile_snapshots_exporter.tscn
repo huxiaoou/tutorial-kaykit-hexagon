@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://dg3js3ukrgr15"]
 
 [ext_resource type="Script" uid="uid://db3eomgqo2627" path="res://tools/hextile_snapshots_exporter.gd" id="1_a5ean"]
-[ext_resource type="MeshLibrary" uid="uid://ddwp33qflqhwi" path="res://resources/meshlibs/tiles.meshlib" id="2_hurkk"]
 
 [node name="HextileSnapshotsExporter" type="Node3D" unique_id=229041644]
 script = ExtResource("1_a5ean")
-meshlib = ExtResource("2_hurkk")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1914890563]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
+keep_aspect = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=962933369]
 transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
