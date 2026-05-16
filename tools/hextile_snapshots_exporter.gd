@@ -8,12 +8,13 @@ class_name HexTileSnapshotsExporter
 func _ready() -> void:
     var mgr_hextile: Dictionary[String, HexTile] = Utils.setup_manager_hextile(meshlib)
     print(get_window().size)
+    get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+    get_window().size = Vector2i(512, 512)
     print(get_window().size)
-    get_window().size = Vector2i(512, 512)    
     for hextile: HexTile in mgr_hextile.values():
         await get_tree().process_frame
         get_hextile_snapshot(hextile)
-    #get_tree().quit()
+    get_tree().quit()
     return
 
 
