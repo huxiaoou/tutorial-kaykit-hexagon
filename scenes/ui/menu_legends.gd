@@ -3,6 +3,8 @@ extends ScrollContainer
 class_name MenuLegends
 
 @export var scene_legend: PackedScene
+@onready var center_container: CenterContainer = $CenterContainer
+@onready var color_rect: ColorRect = $CenterContainer/ColorRect
 @onready var grid_legends: GridContainer = $CenterContainer/GridLegends
 
 
@@ -13,9 +15,9 @@ func setup(manager_hextile: Dictionary[String, HexTile]) -> void:
 
         var hextile: HexTile = manager_hextile[hextile_name]
         var legend_hextile: LegendHextile = scene_legend.instantiate()
-        var texture: Texture2D = Utils.get_hextile_snapshot(hextile)
-        legend_hextile.setup(texture, hextile)
+        legend_hextile.setup(hextile)
         grid_legends.add_child(legend_hextile)
+    color_rect.custom_minimum_size.y = grid_legends.get_minimum_size().y * 1.02
     return
 
 
