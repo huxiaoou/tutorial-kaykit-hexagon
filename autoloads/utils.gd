@@ -1,6 +1,6 @@
 extends Node
 
-const HEXTILE_SNAPSHOTS_DIR: String = "res://assests/snapshots/"
+# const HEXTILE_SNAPSHOTS_DIR: String = "res://assests/snapshots/"
 
 
 func setup_manager_hextile(meshlib: MeshLibrary) -> Dictionary[String, HexTile]:
@@ -21,9 +21,9 @@ func setup_manager_hextile(meshlib: MeshLibrary) -> Dictionary[String, HexTile]:
 
 
 func get_hextile_snapshot(hextile: HexTile) -> Texture2D:
-    var snapshot_path: String = HEXTILE_SNAPSHOTS_DIR + hextile.data.mesh_name + ".png"
+    var snapshot_path: String = Config.DIR_SNAPSHOTS + hextile.data.mesh_name + ".png"
     if ResourceLoader.exists(snapshot_path):
         var snapshot: Texture2D = ResourceLoader.load(snapshot_path) as Texture2D
         return snapshot
-    print("Snapshot not found for hextile: ", hextile.data.mesh_name)
+    print("Snapshot not found for hextile: ", snapshot_path)
     return null

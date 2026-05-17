@@ -4,12 +4,14 @@ class_name WorldEditor
 
 @onready var cursor: Cursor = $Cursor
 @onready var box_button_tools: BoxButtonTools = $UI/BoxButtonTools
+@onready var menu_legends: MenuLegends = $UI/MenuLegends
 
 var selected_hextile: HexTile = null
 
 
 func _ready() -> void:
     super()
+    menu_legends.setup(manager_hextile)
     box_button_tools.setup(manager_hextile)
     for button_tool in box_button_tools.get_button_tools():
         button_tool.hextile_activated.connect(on_hextile_activated)

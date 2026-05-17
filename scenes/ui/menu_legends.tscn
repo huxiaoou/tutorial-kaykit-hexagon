@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cm7m4hwx1gmhs"]
+
+[ext_resource type="Script" uid="uid://dmar8y5ypxdl5" path="res://scenes/ui/menu_legends.gd" id="1_ivh4g"]
+[ext_resource type="PackedScene" uid="uid://btobgo540o4vk" path="res://scenes/ui/legend_hextile.tscn" id="2_jsllg"]
+
+[node name="MenuLegends" type="ScrollContainer" unique_id=576466966]
+visible = false
+custom_minimum_size = Vector2(1920, 952)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_ivh4g")
+scene_legend = ExtResource("2_jsllg")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1718774626]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridLegends" type="GridContainer" parent="CenterContainer" unique_id=283329330]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 9
